@@ -56,14 +56,20 @@ add here
    cd whats-in-your-fridge
    
 2. **Create a virtual environment**
+   ```bash
     python -m venv venv
+   
     source venv/bin/activate  # macOS/Linux
+   
     venv\Scripts\activate     # Windows
 
 3. **Install dependencies**
-    pip install -r requirements.txt
+   ```bash
+
+   pip install -r requirements.txt
     
 4. **Add your Spoonacular API key**
+   
     Create a folder called JSON_Files
 
     Add a file named api_key.json:
@@ -72,48 +78,31 @@ add here
         "api_key": "YOUR_API_KEY_HERE"
     }
 
-5. **Run the Flask app**
+6. **Run the Flask app**
+   ```bash
     python run.py
 
-6. **Open browser**
+7. **Open browser**
+   
     http://127.0.0.1:5000
 
 ## Project Structure
 
-SearchRecipes_Flask/
-│
-├── static/
-│   ├── style.css          # Main styling
-│   ├── app.js             # Form validation & UX logic
-│   └── images/
-│
-├── templates/
-│   ├── quiz.html          # Main quiz/start page
-│   ├── recipes_results.html
-│
-├── JSON_Files/
-│   └── api_key.json       # (add your API key here)
-│
-├── forms.py               # Flask-WTF form definitions
-├── routes.py              # Flask routes + API logic
-├── main_functions.py      # Helpers (save/read JSON)
-├── __init__.py            # App initialization
-└── run.py                 # Entry point
 
-##Future Features/Planned Improvements
+## Future Features/Planned Improvements
 
-###Pre-fetch and validate recipe links
+### Pre-fetch and validate recipe links
 
 Currently, some recipe URLs returned by Spoonacular may be outdated or no longer accessible.
 By pre-fetching and validating each link before it’s displayed, the app can ensure users only see recipes that lead to real, working pages.
 This improvement would make the user experience smoother, more reliable, and remove the frustration of broken or expired links.
 
-###Favorites Section
+### Favorites Section
 
-A Favorites section will let users save recipes they love or plan to try later. This adds a personal touch to the app, making it feel more interactive and meaningful.
+A favorites section will let users save recipes they love or plan to try later. This adds a personal touch to the app, making it feel more interactive and meaningful.
 It encourages users to return, revisit saved recipes, and build a personalized library of meal ideas.
 
-###Local database or cloud sync
+### Local database or cloud sync
 
 Introducing a local or cloud-based database will allow the app to store user favorites, recent searches, and preferences.
 This ensures that users can resume their experience exactly where they left off even after closing the app.
