@@ -88,6 +88,28 @@ add here
 
 ## Project Structure
 
+```
+whats-in-your-fridge/
+├── README.md                          # Project documentation
+├── requirements.txt                   # Python dependencies
+├── run.py                            # Flask app entry point
+└── SearchRecipes_Flask/              # Main application package
+    ├── __init__.py                   # Flask app initialization
+    ├── forms.py                      # WTForms for user input
+    ├── main_functions.py             # Core logic & API calls
+    ├── routes.py                     # Flask routes/endpoints
+    ├── JSON_Files/                   # Configuration & data
+    │   ├── api_key.json             # Spoonacular API key (not tracked)
+    │   └── recipes.json             # Cached recipe data
+    ├── static/                       # Frontend assets
+    │   ├── app.js                   # JavaScript functionality
+    │   ├── style.css                # Custom styling
+    │   └── img/                     # Image assets
+    └── templates/                    # HTML templates
+        ├── quiz.html                # Ingredient input page
+        └── recipes_results.html     # Recipe results page
+```
+
 
 ## Future Features/Planned Improvements
 
