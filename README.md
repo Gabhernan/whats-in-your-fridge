@@ -1,12 +1,12 @@
-# What’s In Your Fridge?
+# 🍴What’s In Your Fridge?
 
-A simple yet smart recipe web app built with **Python (Flask)** + **HTML/CSS/JS** that helps you discover recipes using the ingredients you already have — perfect for when you’re staring at your fridge wondering what to cook 🍳  
+A recipe web app built with **Python (Flask)** + **HTML/CSS/JS** that helps you discover recipes using the ingredients you already have, perfect for when you’re staring at your fridge wondering what to cook 🍳  
 
 This project connects to the **Spoonacular API** to fetch recipe ideas, filter by allergies and diets, and shows recipes that include instructions.
 
 ---
 
-## Features
+## ✨ Features
 
 - **Ingredient-based Search** – Enter what’s in your fridge and instantly find recipes that use those ingredients.  
 - **Allergy & Diet Filters** – Supports dietary preferences like vegetarian, vegan, keto, and gluten-free.  
@@ -17,7 +17,7 @@ This project connects to the **Spoonacular API** to fetch recipe ideas, filter b
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 **Backend:**  
 - Python 3  
@@ -34,21 +34,23 @@ This project connects to the **Spoonacular API** to fetch recipe ideas, filter b
 
 ---
 
-## UI Preview
+## 🎯 UI Preview
 
 ### Quiz Page (Get Started)
 > Users input their ingredients, allergies, and diet preference.
 
-add here
+<img width="1920" height="1028" alt="What’s in your FRIDGE? Get Started" src="https://github.com/user-attachments/assets/b5e0e6cc-a16c-479d-ad1f-6605c7db7821" />
+
 
 ### Results Page
 > Displays recipe cards with instructions, nutrition info, and source links.
 
-add here
+<img width="1905" height="1022" alt="Recipe Results" src="https://github.com/user-attachments/assets/2655f4de-e9df-4d32-901d-5228558cee08" />
+
 
 ---
 
-## Setup Instructions
+## 🔧 Setup Instructions
 
 1. **Clone this repository**
    ```bash
@@ -86,7 +88,7 @@ add here
    
     http://127.0.0.1:5000
 
-## Project Structure
+## 🏗️ Project Structure
 
 ```
 whats-in-your-fridge/
@@ -111,7 +113,7 @@ whats-in-your-fridge/
 ```
 
 
-## Future Features/Planned Improvements
+## 🌸 Future Features/Planned Improvements
 
 ### Pre-fetch and validate recipe links
 
