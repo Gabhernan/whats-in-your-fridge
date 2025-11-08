@@ -1,0 +1,16 @@
+# Virtual environment
+venv/
+__pycache__/
+
+# IDE / PyCharm
+.idea/
+
+# Local JSON files with API keys
+SearchRecipes_Flask/JSON_Files/*.json
+
+# System files
+.DS_Store
+
+# Environment files
+.env
+.env.*

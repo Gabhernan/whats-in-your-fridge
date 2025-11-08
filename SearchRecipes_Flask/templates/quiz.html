@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>What’s in your FRIDGE?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google font (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="page">
+
+  <main class="grid">
+    <!-- Left side: Big heading / hero image -->
+    <section class="hero">
+      <h1 class="hero__title">
+        What’s in your <span class="accent">FRIDGE?</span>
+      </h1>
+
+
+
+      <!-- Optional decorative image; replace with your own -->
+      <div class="hero__image-wrap">
+        <img src="{{ url_for('static', filename='img/FRIDGE.png') }}" class="hero__image" alt="">
+
+      </div>
+    </section>
+
+    <!-- Right side: Quiz card -->
+    <section class="card">
+      <header class="card__header">
+        <h2>Get Started</h2>
+        <p class="muted">Quick quiz to generate recipes catered to you</p>
+      </header>
+
+      <form method="POST" action="{{ url_for('quiz') }}" class="form" id="quizForm" novalidate>
+        {{ form.hidden_tag() }}
+
+        <!-- Ingredients -->
+        <label class="label" for="ingredients">What ingredients do you have?</label>
+        {{ form.ingredients(class="input", id="ingredients", placeholder="e.g. chicken, tomato, cheese") }}
+
+        <!-- Allergies -->
+        <label class="label" for="allergies">Any allergies?</label>
+        {{ form.allergies(class="input", id="allergies", placeholder="e.g. dairy, peanuts") }}
+
+        <!-- Diet -->
+        <label class="label" for="diet">Any diet preferences?</label>
+        {{ form.diet(class="select", id="diet") }}
+
+        <button type="submit" class="btn btn-primary">FIND YOUR RECIPE</button>
+      </form>
+
+      <p class="tiny muted">Tip: 3–5 ingredients works best. Separate by commas.</p>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recipe Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(170deg, #fffaf3 0%, #fff2e0 33%, #e3d09d 90%);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      color: #111;
+    }
+
+    /*PAGE SHELL (centers content and limits width)*/
+    .results-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: clamp(16px, 4vw, 40px);
+    }
+
+    /*HEADER: title + new search*/
+    .results-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid #e9e9e9;
+      padding-bottom: 12px;
+    }
+
+    .results-title {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 34px);
+      color: #e79629;
+      letter-spacing: 0.2px;
+    }
+
+    /*BUTTON STYLES*/
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: bold;
+      text-decoration: none;
+      user-select: none;
+      cursor: pointer;
+      transition: transform 0.06s ease, filter 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #f08a24, #ffae42);
+      color: #fff;
+      border: 0;
+      box-shadow: 0 6px 14px rgba(240,138,36,0.25);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(90deg, #f08a24, #ffae42);
+      color: #fff;
+      border: 1px solid #ddd;
+    }
+
+    .btn:hover {
+      filter: brightness(1.03);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    /*RESULTS GRID (responsive columns)*/
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    /*CARD LAYOUT*/
+    .recipe-card {
+      display: grid;
+      grid-template-rows: auto 1fr auto; /* image | body | footer */
+      background: linear-gradient(180deg, #fff, #fff7ee);
+      border: 1px solid #eee;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: transform 0.12s ease;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /*IMAGE AREA*/
+    .recipe-media {
+      aspect-ratio: 16/10;
+      background: #f4f0ea;
+      overflow: hidden;
+    }
+
+    .recipe-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .recipe-card:hover .recipe-media img {
+      transform: scale(1.02);
+    }
+
+    /*CARD BODY (TEXT)*/
+    .recipe-body {
+      padding: 12px 14px;
+    }
+
+    .recipe-title {
+      margin: 0 0 6px;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .recipe-meta {
+      margin: 0 0 6px;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      gap: 10px;
+      color: #6b6b6b;
+      font-size: 14px;
+    }
+
+    .recipe-nutrition {
+      margin: 0;
+      color: #5a5a5a;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /*FOOTER (button)*/
+    .recipe-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px 12px;
+      border-top: 1px dashed #eee;
+    }
+
+    /*EMPTY STATE*/
+    .empty {
+      text-align: center;
+      padding: 48px 16px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="results-shell">
+    <header class="results-header">
+      <h1 class="results-title">Recipe Results</h1>
+      <!-- New Search goes back to your quiz route -->
+      <a class="btn btn-secondary" href="{{ url_for('quiz') }}">New Search</a>
+    </header>
+
+    {% if not recipes or recipes|length == 0 %}
+      <!-- Empty state -->
+      <div class="empty">
+        <p>No results found. Try removing a restriction or using fewer ingredients.</p>
+        <a class="btn btn-primary" href="{{ url_for('quiz') }}">Start Over</a>
+      </div>
+    {% else %}
+      <!-- Responsive card grid -->
+      <div class="results-grid">
+        {% for i in recipes %}
+          <article class="recipe-card">
+            <!-- IMAGE -->
+            <div class="recipe-media">
+              <img src="{{ i.image }}" alt="{{ i.title }}" loading="lazy">
+            </div>
+
+            <!-- TEXT -->
+            <div class="recipe-body">
+              <h3 class="recipe-title">{{ i.title }}</h3>
+
+              <ul class="recipe-meta">
+                <li>⏱ {{ i.readyInMinutes or 0 }} mins</li>
+                <li>🍽 {{ i.servings or 1 }} servings</li>
+              </ul>
+
+              {% if i.nutrition %}
+                <ul class="recipe-nutrition">
+                  {% for name, value in i.nutrition.items() %}
+                    <li>{{ name }}: {{ value }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="recipe-actions">
+              <a class="btn btn-primary" href="{{ i.url }}" target="_blank" rel="noopener">
+                View Recipe
+              </a>
+            </footer>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </section>
+</body>
+</html>
